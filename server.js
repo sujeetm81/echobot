@@ -13,15 +13,15 @@ const botService = new skype.BotService({
 });
 
 botService.on('contactAdded', (bot, data) => {
-    bot.reply('Hello ${data.fromDisplayName}!', true);
+    bot.reply('Hello "${data.fromDisplayName}"!', true);
 });
 
 botService.on('personalMessage', (bot, data) => {
-    bot.reply('Hey ${data.from}. Thank you for your message: "${data.content}".', true);
+    bot.reply('Hey ' +  data.from + ' Thank you for your message: ' + data.content, true);
 });
 
 const server = restify.createServer();
 server.post('/v1/chat', skype.messagingHandler(botService));
-const port = 8090;
+const port = 8000;
 server.listen(port);
 console.log('Listening for incoming requests on port ' + port);
