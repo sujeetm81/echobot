@@ -1,7 +1,7 @@
 const fs = require('fs');
 const restify = require('restify');
 const skype = require('skype-sdk');
-var YQL = require('yql');
+var Wunderground = require('wundergroundnode');
 
 const botService = new skype.BotService({
     messaging: {
@@ -18,15 +18,13 @@ botService.on('contactAdded', (bot, data) => {
 });
 
 botService.on('personalMessage', (bot, data) => {
-    var query = new YQL('select * from weather.forecast where (location = ' + data.content + ')');
-
-    query.exec(function(err, data) {
-    var location = data.query.results.channel.location;
-    var condition = data.query.results.channel.item.condition;
+    var myKey = 'a193f0a5e396aa7d';
+    var wunderground = new Wunderground(myKey);
+    wunderground.conditions().request(data.content, function(err, response){
+    console.log(response.current_observation.weather);
+    bot.reply('The current weather in ' + data.content + ' is  ' + response.current_observation.weather, true);
+});
   
-    console.log('The current weather in ' + location.city + ', ' + location.region + ' is ' + condition.temp + ' degrees.');
-    bot.reply('The current weather in ' + location.city + ', ' + location.region + ' is ' + condition.temp + ' degrees.', true);
-    });
 });
 
 const server = restify.createServer();

@@ -22,6 +22,8 @@
   "dependencies": {
     "restify": "^4.0.4",
     "skype-sdk": "^1.0.6",
-    "yql": "^1.0.2"
+    "wundergroundnode": "^0.9.0",
+    "yql": "^1.0.2",
+    "yql-node": "^0.2.0"
   }
 }
