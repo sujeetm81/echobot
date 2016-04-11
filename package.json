@@ -21,6 +21,6 @@
   "homepage": "https://github.com/sujeetm81/echobot#readme",
   "dependencies": {
     "restify": "^4.0.4",
-    "skype-sdk": "file:skype-sdk"
+    "skype-sdk": "file:skype-sdk.tar.gz"
   }
 }
