@@ -14,7 +14,7 @@ const botService = new skype.BotService({
 });
 
 botService.on('contactAdded', (bot, data) => {
-    bot.reply('Hello "${data.fromDisplayName}"!', true);
+    bot.reply('Hello ' +  data.fromDisplayName + '!', true);
 });
 
 botService.on('personalMessage', (bot, data) => {
