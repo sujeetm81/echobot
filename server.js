@@ -22,7 +22,7 @@ botService.on('personalMessage', (bot, data) => {
 
 const server = restify.createServer();
 server.post('/v1/chat', skype.messagingHandler(botService));
-const port = 80002;
+const port = process.env.PORT || 8080;
 server.listen(port);
 console.log('Listening for incoming requests on port ' + port);
 process.on('SIGINT', () => {    
