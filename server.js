@@ -23,8 +23,16 @@ botService.on('personalMessage', (bot, data) => {
     wunderground.conditions().request(data.content, function(err, response){
     console.log(response.current_observation.weather);
     bot.reply('The current weather in ' + data.content + ' is  ' + response.current_observation.weather, true);
+    });
 });
-  
+
+botService.on('groupMessage', (bot, data) => {
+    var myKey = 'a193f0a5e396aa7d';
+    var wunderground = new Wunderground(myKey);
+    wunderground.conditions().request(data.content, function(err, response){
+    console.log(response.current_observation.weather);
+    bot.reply('The current weather in ' + data.content + ' is  ' + response.current_observation.weather, true);
+    });
 });
 
 const server = restify.createServer();
